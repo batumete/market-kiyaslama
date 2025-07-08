@@ -1,0 +1,5 @@
+[run]
+run = "node simple-backend.js"
+
+[deployment]
+run = ["node", "simple-backend.js"]
