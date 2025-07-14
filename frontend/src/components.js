@@ -746,19 +746,275 @@ export const ShoppingCartModal = ({ isOpen, onClose }) => {
   );
 };
 
-// Store Locator Modal Component
-export const StoreLocatorModal = ({ isOpen, onClose }) => {
-  const [selectedStore, setSelectedStore] = useState(null);
+// Profile Modal Component
+export const ProfileModal = ({ isOpen, onClose }) => {
+  const [activeTab, setActiveTab] = useState('profile');
+
+  const menuItems = [
+    { id: 'profile', label: 'Üyelik Bilgilerim', icon: '👤' },
+    { id: 'comments', label: 'Yorumlarım', icon: '💬' },
+    { id: 'favorites', label: 'Favoriler', icon: '❤️' },
+    { id: 'addresses', label: 'Adreslerim', icon: '📍' },
+    { id: 'orders', label: 'Siparişlerim', icon: '📦' },
+    { id: 'settings', label: 'Hesap Ayarları', icon: '⚙️' },
+    { id: 'logout', label: 'Çıkış Yap', icon: '🚪' }
+  ];
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'profile':
+        return (
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-gray-900">Üyelik Bilgilerim</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Ad Soyad</label>
+                <input type="text" value="Mehmet Yılmaz" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">E-posta</label>
+                <input type="email" value="mehmet@example.com" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Telefon</label>
+                <input type="tel" value="0532 123 4567" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Doğum Tarihi</label>
+                <input type="date" value="1990-01-01" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+              </div>
+            </div>
+            <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+              Bilgileri Güncelle
+            </button>
+          </div>
+        );
+      case 'comments':
+        return (
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-gray-900">Yorumlarım</h3>
+            <div className="space-y-4">
+              {[1, 2, 3].map((comment) => (
+                <div key={comment} className="bg-gray-50 rounded-lg p-4">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900">Coca Cola 2.5L</h4>
+                      <p className="text-gray-600 mt-1">"Migros'ta çok uygun fiyata buldum. Tavsiye ederim!"</p>
+                      <div className="flex items-center mt-2">
+                        <div className="flex text-yellow-400">
+                          {[...Array(5)].map((_, i) => (
+                            <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                            </svg>
+                          ))}
+                        </div>
+                        <span className="text-sm text-gray-500 ml-2">2 gün önce</span>
+                      </div>
+                    </div>
+                    <button className="text-red-500 hover:text-red-700 transition-colors">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case 'favorites':
+        return (
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-gray-900">Favoriler</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {mockProducts.map((product) => (
+                <div key={product.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900">{product.name}</h4>
+                      <p className="text-gray-600">{product.brand}</p>
+                      <p className="text-lg font-bold text-purple-600 mt-1">₺{product.avgPrice}</p>
+                    </div>
+                    <button className="text-red-500 hover:text-red-700 transition-colors">
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case 'addresses':
+        return (
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <h3 className="text-xl font-bold text-gray-900">Adreslerim</h3>
+              <button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                + Yeni Adres Ekle
+              </button>
+            </div>
+            <div className="space-y-4">
+              {[
+                { id: 1, title: 'Ev', address: 'Atatürk Mahallesi, Cumhuriyet Caddesi No:123, Kadıköy/İstanbul', isDefault: true },
+                { id: 2, title: 'İş', address: 'Levent Mahallesi, Büyükdere Caddesi No:456, Beşiktaş/İstanbul', isDefault: false }
+              ].map((address) => (
+                <div key={address.id} className="bg-gray-50 rounded-lg p-4">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center">
+                        <h4 className="font-semibold text-gray-900">{address.title}</h4>
+                        {address.isDefault && (
+                          <span className="ml-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+                            Varsayılan
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-gray-600 mt-1">{address.address}</p>
+                    </div>
+                    <div className="flex space-x-2">
+                      <button className="text-blue-500 hover:text-blue-700 transition-colors">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                      </button>
+                      <button className="text-red-500 hover:text-red-700 transition-colors">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case 'orders':
+        return (
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-gray-900">Siparişlerim</h3>
+            <div className="space-y-4">
+              {[
+                { id: 1, date: '2025-01-10', store: 'Migros', total: '₺234.50', status: 'Teslim Edildi' },
+                { id: 2, date: '2025-01-08', store: 'CarrefourSA', total: '₺156.75', status: 'Yolda' },
+                { id: 3, date: '2025-01-05', store: 'A101', total: '₺89.25', status: 'Teslim Edildi' }
+              ].map((order) => (
+                <div key={order.id} className="bg-gray-50 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center">
+                        <h4 className="font-semibold text-gray-900">Sipariş #{order.id}</h4>
+                        <span className={`ml-2 px-2 py-1 rounded-full text-xs ${
+                          order.status === 'Teslim Edildi' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                        }`}>
+                          {order.status}
+                        </span>
+                      </div>
+                      <p className="text-gray-600 mt-1">{order.store} - {order.date}</p>
+                      <p className="text-lg font-bold text-purple-600 mt-1">{order.total}</p>
+                    </div>
+                    <button className="text-purple-600 hover:text-purple-800 transition-colors">
+                      Detaylar
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      case 'settings':
+        return (
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold text-gray-900">Hesap Ayarları</h3>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h4 className="font-semibold text-gray-900">E-posta Bildirimleri</h4>
+                  <p className="text-gray-600">Fiyat düşüşleri ve kampanyalar hakkında bilgilendirme</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" className="sr-only peer" defaultChecked />
+                  <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                </label>
+              </div>
+              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h4 className="font-semibold text-gray-900">Push Bildirimleri</h4>
+                  <p className="text-gray-600">Mobil uygulama bildirimleri</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" className="sr-only peer" defaultChecked />
+                  <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                </label>
+              </div>
+              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h4 className="font-semibold text-gray-900">Konum Servisleri</h4>
+                  <p className="text-gray-600">Yakın marketleri bulmak için konum erişimi</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" className="sr-only peer" defaultChecked />
+                  <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple-600"></div>
+                </label>
+              </div>
+            </div>
+            <div className="border-t pt-6">
+              <h4 className="font-semibold text-gray-900 mb-4">Şifre Değiştir</h4>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Mevcut Şifre</label>
+                  <input type="password" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Yeni Şifre</label>
+                  <input type="password" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Yeni Şifre Tekrar</label>
+                  <input type="password" className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+                </div>
+                <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                  Şifreyi Güncelle
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      case 'logout':
+        return (
+          <div className="space-y-6 text-center">
+            <div className="text-6xl">🚪</div>
+            <h3 className="text-xl font-bold text-gray-900">Çıkış Yapmak İstediğinize Emin misiniz?</h3>
+            <p className="text-gray-600">Çıkış yaptıktan sonra tekrar giriş yapmanız gerekecektir.</p>
+            <div className="flex justify-center space-x-4">
+              <button 
+                onClick={() => setActiveTab('profile')}
+                className="bg-gray-300 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-400 transition-colors"
+              >
+                İptal
+              </button>
+              <button className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors">
+                Çıkış Yap
+              </button>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl mx-4 max-h-[80vh] overflow-hidden">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-10">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold">Yakınımdaki Marketler</h2>
+            <h2 className="text-2xl font-bold">Profil</h2>
             <button 
               onClick={onClose}
               className="text-white hover:text-gray-200 transition-colors"
@@ -770,89 +1026,33 @@ export const StoreLocatorModal = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        <div className="flex h-96">
-          {/* Map Area */}
-          <div className="flex-1 relative bg-gray-200">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <p className="text-lg font-medium">İnteraktif Harita</p>
-                <p className="text-sm">Gerçek uygulamada buraya harita entegrasyonu gelecek</p>
-              </div>
-            </div>
-            
-            {/* Mock Map Points */}
-            <div className="absolute top-16 left-20 w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow-lg cursor-pointer transform hover:scale-125 transition-transform" onClick={() => setSelectedStore(mockStores[0])}></div>
-            <div className="absolute top-32 right-24 w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow-lg cursor-pointer transform hover:scale-125 transition-transform" onClick={() => setSelectedStore(mockStores[1])}></div>
-            <div className="absolute bottom-24 left-32 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow-lg cursor-pointer transform hover:scale-125 transition-transform" onClick={() => setSelectedStore(mockStores[2])}></div>
-            <div className="absolute bottom-16 right-20 w-4 h-4 bg-purple-500 rounded-full border-2 border-white shadow-lg cursor-pointer transform hover:scale-125 transition-transform" onClick={() => setSelectedStore(mockStores[3])}></div>
+        <div className="flex h-[600px]">
+          {/* Sidebar */}
+          <div className="w-64 bg-gray-50 border-r border-gray-200 overflow-y-auto">
+            <nav className="p-4">
+              <ul className="space-y-2">
+                {menuItems.map((item) => (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => setActiveTab(item.id)}
+                      className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors ${
+                        activeTab === item.id
+                          ? 'bg-purple-100 text-purple-700'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      <span className="text-xl">{item.icon}</span>
+                      <span className="font-medium">{item.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
 
-          {/* Store List */}
-          <div className="w-80 bg-gray-50 p-6 overflow-y-auto">
-            <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Konum ara..."
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-              />
-            </div>
-
-            <h3 className="font-bold text-gray-900 mb-4">Yakınımdaki Marketler</h3>
-            <div className="space-y-3">
-              {mockStores.map(store => (
-                <div 
-                  key={store.id} 
-                  className={`p-4 rounded-xl cursor-pointer transition-all ${
-                    selectedStore?.id === store.id 
-                      ? 'bg-purple-100 border-2 border-purple-300' 
-                      : 'bg-white border border-gray-200 hover:shadow-md'
-                  }`}
-                  onClick={() => setSelectedStore(store)}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h4 className="font-bold text-gray-900">{store.name}</h4>
-                      <p className="text-sm text-gray-600 mt-1">{store.address}</p>
-                      <div className="flex items-center mt-2">
-                        <div className="flex text-yellow-400">
-                          {[...Array(Math.floor(store.rating))].map((_, i) => (
-                            <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                            </svg>
-                          ))}
-                        </div>
-                        <span className="text-sm text-gray-600 ml-1">({store.rating})</span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-bold text-purple-600">{store.distance}</div>
-                      <button className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full mt-1 hover:bg-purple-200 transition-colors">
-                        Yol Tarifi
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {selectedStore && (
-              <div className="mt-6 p-4 bg-white rounded-xl border border-gray-200">
-                <h4 className="font-bold text-gray-900 mb-2">{selectedStore.name}</h4>
-                <p className="text-sm text-gray-600 mb-3">{selectedStore.address}</p>
-                <div className="flex gap-2">
-                  <button className="flex-1 bg-purple-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors">
-                    📞 Ara
-                  </button>
-                  <button className="flex-1 bg-green-600 text-white py-2 px-3 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors">
-                    🗺️ Yol Tarifi
-                  </button>
-                </div>
-              </div>
-            )}
+          {/* Content */}
+          <div className="flex-1 p-6 overflow-y-auto">
+            {renderContent()}
           </div>
         </div>
       </div>
