@@ -170,7 +170,7 @@ export const HeroSection = ({ onGetStarted }) => {
             <div className="relative z-10">
               <img 
                 src="https://images.pexels.com/photos/6214388/pexels-photo-6214388.jpeg" 
-                alt="FiyatSepet App" 
+                alt="FiyatKıyasla App" 
                 className="w-full max-w-md mx-auto lg:max-w-lg rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
               />
             </div>
