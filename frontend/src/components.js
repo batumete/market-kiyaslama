@@ -296,49 +296,7 @@ export const FeaturesSection = () => {
   );
 };
 
-// Stats Section Component
-export const StatsSection = () => {
-  const stats = [
-    { number: '2.5M+', label: 'Gerçek Ürün Verisi', icon: '📊' },
-    { number: '87B+', label: 'Kayıtlı Üye', icon: '👥' },
-    { number: '3664+', label: 'Esnaf', icon: '🏪' },
-    { number: '70+', label: 'Şehir', icon: '🌍' }
-  ];
-
-  return (
-    <section className="py-16 bg-gradient-to-br from-purple-600 to-purple-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            Satın alma sürecinizi <br />
-            <span className="text-yellow-300">verimli hale getirin.</span>
-          </h2>
-          <p className="text-xl text-purple-100 max-w-3xl mx-auto">
-            fiyatbu ile bir ürün etrafı direkt karar verme sürecinizi daha kolay ve
-            etkili yönetebilirsiniz. Gittiğiniz bir mağazada indirime olduğunu rafta
-            edilish ürününün gerçekten indirimde olup olmadığını 4 saniyeden fazla
-            mağaza verisi ile kıyaslayabilir ve satın alma sürecinizde doğru kararlar
-            verebilirsiniz.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center group">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                <div className="text-4xl mb-2">{stat.icon}</div>
-                <div className="text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
-                  {stat.number}
-                </div>
-                <div className="text-purple-100 font-medium">{stat.label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+// Stats Section Component - REMOVED as per user request
 
 // How It Works Section Component
 export const HowItWorksSection = () => {
