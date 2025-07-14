@@ -428,7 +428,7 @@ export const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              FiyatSepet
+              FiyatKıyasla
             </div>
             <p className="text-gray-400">
               Akıllı alışveriş uygulaması ile her alışverişte tasarruf edin.
@@ -476,7 +476,6 @@ export const Footer = () => {
             <h3 className="font-bold mb-4">Şirket</h3>
             <ul className="space-y-2 text-gray-400">
               <li><a href="#" className="hover:text-purple-400 transition-colors">Hakkımızda</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Esnaf Ol</a></li>
               <li><a href="#" className="hover:text-purple-400 transition-colors">Gizlilik Politikası</a></li>
               <li><a href="#" className="hover:text-purple-400 transition-colors">Kullanım Şartları</a></li>
             </ul>
@@ -484,7 +483,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 FiyatSepet. Tüm hakları saklıdır.</p>
+          <p>&copy; 2025 FiyatKıyasla. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>
