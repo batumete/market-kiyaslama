@@ -52,7 +52,7 @@ const testimonials = [
 ];
 
 // Header Component
-export const Header = ({ onProductSearch, onCartOpen, onStoreLocator }) => {
+export const Header = ({ onCartOpen, onProfileOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -62,7 +62,7 @@ export const Header = ({ onProductSearch, onCartOpen, onStoreLocator }) => {
           {/* Logo */}
           <div className="flex items-center">
             <div className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
-              FiyatSepet
+              FiyatKıyasla
             </div>
           </div>
 
@@ -72,16 +72,10 @@ export const Header = ({ onProductSearch, onCartOpen, onStoreLocator }) => {
             <a href="#how-it-works" className="text-gray-700 hover:text-purple-600 transition-colors">Nasıl Kullanılır</a>
             <a href="#testimonials" className="text-gray-700 hover:text-purple-600 transition-colors">Kullanıcı Yorumları</a>
             <button 
-              onClick={onProductSearch}
+              onClick={onProfileOpen}
               className="text-gray-700 hover:text-purple-600 transition-colors"
             >
-              Ürün Ara
-            </button>
-            <button 
-              onClick={onStoreLocator}
-              className="text-gray-700 hover:text-purple-600 transition-colors"
-            >
-              Market Bul
+              Profil
             </button>
           </nav>
 
@@ -95,9 +89,6 @@ export const Header = ({ onProductSearch, onCartOpen, onStoreLocator }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0a1 1 0 102 0m9 0a1 1 0 102 0" />
               </svg>
               <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
-            </button>
-            <button className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full hover:from-purple-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105">
-              Esnaf Olarak Başvur
             </button>
           </div>
 
@@ -119,8 +110,7 @@ export const Header = ({ onProductSearch, onCartOpen, onStoreLocator }) => {
               <a href="#features" className="text-gray-700 hover:text-purple-600 transition-colors">Özellikler</a>
               <a href="#how-it-works" className="text-gray-700 hover:text-purple-600 transition-colors">Nasıl Kullanılır</a>
               <a href="#testimonials" className="text-gray-700 hover:text-purple-600 transition-colors">Kullanıcı Yorumları</a>
-              <button onClick={onProductSearch} className="text-left text-gray-700 hover:text-purple-600 transition-colors">Ürün Ara</button>
-              <button onClick={onStoreLocator} className="text-left text-gray-700 hover:text-purple-600 transition-colors">Market Bul</button>
+              <button onClick={onProfileOpen} className="text-left text-gray-700 hover:text-purple-600 transition-colors">Profil</button>
               <button onClick={onCartOpen} className="text-left text-gray-700 hover:text-purple-600 transition-colors">Sepetim (3)</button>
             </nav>
           </div>
