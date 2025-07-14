@@ -5,20 +5,18 @@ import {
   Header, 
   HeroSection, 
   FeaturesSection, 
-  StatsSection, 
   HowItWorksSection, 
   TestimonialsSection, 
-  DownloadSection, 
   Footer,
   ProductSearchModal,
   ShoppingCartModal,
-  StoreLocatorModal
+  ProfileModal
 } from './components';
 
 function App() {
   const [isProductSearchOpen, setIsProductSearchOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isStoreLocatorOpen, setIsStoreLocatorOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   return (
     <div className="App min-h-screen bg-white">
@@ -27,16 +25,13 @@ function App() {
           <Route path="/" element={
             <>
               <Header 
-                onProductSearch={() => setIsProductSearchOpen(true)}
                 onCartOpen={() => setIsCartOpen(true)}
-                onStoreLocator={() => setIsStoreLocatorOpen(true)}
+                onProfileOpen={() => setIsProfileOpen(true)}
               />
               <HeroSection onGetStarted={() => setIsProductSearchOpen(true)} />
               <FeaturesSection />
-              <StatsSection />
               <HowItWorksSection />
               <TestimonialsSection />
-              <DownloadSection />
               <Footer />
               
               {/* Modals */}
@@ -48,9 +43,9 @@ function App() {
                 isOpen={isCartOpen} 
                 onClose={() => setIsCartOpen(false)} 
               />
-              <StoreLocatorModal 
-                isOpen={isStoreLocatorOpen} 
-                onClose={() => setIsStoreLocatorOpen(false)} 
+              <ProfileModal 
+                isOpen={isProfileOpen} 
+                onClose={() => setIsProfileOpen(false)} 
               />
             </>
           } />
